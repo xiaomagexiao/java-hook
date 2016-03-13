@@ -1,5 +1,7 @@
 package com.example.hookdemo.hook;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,7 +32,23 @@ public class MyHookActivity extends MyHookCommon {
 				super.beforeHookedMethod(param);
 			}
 		};
+		
 		XposedHelpers.findAndHookMethod("android.app.Activity", lpparam.classLoader, "startActivityForResult", Intent.class,
 				int.class, Bundle.class, mHookActivity);
+		
+		XposedHelpers.findAndHookMethod("android.app.Activity", lpparam.classLoader, "onCreate", Bundle.class,
+				commonHook("onCreate"));
+		
+		XposedHelpers.findAndHookMethod("android.app.Activity", lpparam.classLoader, "startActivityFromFragment", Fragment.class,
+				Intent.class, int.class, Bundle.class, commonHook("startActivityFromFragment"));
+		
+		XposedHelpers.findAndHookMethod("android.app.Activity", lpparam.classLoader, "startActivityFromChild", Activity.class,
+				Intent.class, int.class, Bundle.class, commonHook("startActivityFromChild"));
+		
+		XposedHelpers.findAndHookMethod("android.app.Activity", lpparam.classLoader, "startActivities", Intent[].class,
+				Bundle.class, commonHook("startActivities"));
+		
+		XposedHelpers.findAndHookMethod("android.app.Activity", lpparam.classLoader, "startActivityIfNeeded", Intent.class,
+				int.class, Bundle.class, commonHook("startActivityIfNeeded"));
 	}
 }

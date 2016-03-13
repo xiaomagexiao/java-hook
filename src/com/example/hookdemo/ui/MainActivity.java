@@ -1,20 +1,18 @@
 package com.example.hookdemo.ui;
 
-import com.example.hookdemo.R;
-import com.example.hookdemo.R.id;
-import com.example.hookdemo.R.layout;
-import com.example.hookdemo.model.HKOperateData;
-import com.example.hookdemo.util.HKDataUtil;
-
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 
-public class MainActivity extends Activity implements OnClickListener {
+import com.example.hookdemo.R;
+import com.example.hookdemo.model.HKOperateData;
+import com.example.hookdemo.util.HKDataUtil;
+
+public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	private ListView lv_operatelist;
 
