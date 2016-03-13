@@ -8,6 +8,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class FileUtil {
+
+	/**
+	 * 保存配置文件
+	 * 
+	 * @param str
+	 * @param fileName
+	 */
 	public static void writeStrToFile(String str, String fileName) {
 		FileWriter writer;
 		try {
@@ -20,6 +27,12 @@ public class FileUtil {
 		}
 	}
 
+	/**
+	 * 读取配置文件
+	 * 
+	 * @param fileName
+	 * @return
+	 */
 	public static String readFromFile(String fileName) {
 		String result = "";
 		BufferedReader reader = null;
