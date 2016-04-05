@@ -33,7 +33,12 @@ public class MyHookWebview extends MyHookCommon {
 		// 纳米盒子的方式
 		// at
 		// com.android.webview.chromium.WebViewContentsClientAdapter.handleJsPrompt(WebViewContentsClientAdapter.java:658)
-		XposedHelpers.findAndHookMethod("com.android.webview.chromium.WebViewContentsClientAdapter", lpparam.classLoader,
-				"handleJsPrompt", String.class, String.class, String.class, Object.class, commonHook("handleJsPrompt"));
+		try {
+			XposedHelpers.findAndHookMethod("com.android.webview.chromium.WebViewContentsClientAdapter", lpparam.classLoader,
+					"handleJsPrompt", String.class, String.class, String.class, Class.forName("org.chromium.android_webview.JsPromptResultReceiver"), commonHook("handleJsPrompt"));
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
+	
 }

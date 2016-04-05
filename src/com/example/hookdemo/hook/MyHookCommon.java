@@ -13,9 +13,13 @@ public class MyHookCommon {
 		return new XC_MethodHook() {
 			@Override
 			protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-				printParams(param, info);
-				printStack(info);
-				super.beforeHookedMethod(param);
+				try {
+					printParams(param, info);
+					printStack(info);
+					super.beforeHookedMethod(param);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		};
 	}
